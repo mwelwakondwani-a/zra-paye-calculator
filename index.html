@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ZRA PAYE Calculator</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for social media icons and menu icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- ZRA HEADER -->
+<div class="top-header">
+    <div class="logo">
+        <h2>ZAMBIA REVENUE AUTHORITY</h2>
+        <p>My Tax · Your Tax · Our Destiny</p>
+    </div>
+
+    <div class="top-menu" id="topMenu">
+        <a href="#">About Us</a>
+        <a href="#">Tax Payer Charter</a>
+        <a href="#">Tenders</a>
+        <a href="#">Careers</a>
+        <a href="#">Tutorials</a>
+        <a href="#">Contact Us</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMainMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</div>
+
+<!-- SECOND NAV with hamburger menu -->
+<div class="second-nav">
+    <div class="nav-container">
+        <a href="javascript:void(0);" class="nav-icon" onclick="toggleSecondNav()">
+            <i class="fa fa-bars"></i> MENU
+        </a>
+        <div class="nav-links" id="secondNavLinks">
+            <a href="#">HOME</a>
+            <a href="#">REGISTRATIONS</a>
+            <a href="#">BUSINESS</a>
+            <a href="#">CUSTOMS</a>
+            <a href="#">PUBLICATIONS</a>
+            <a href="#">STATISTICS</a>
+            <a href="#">TAX PORTAL</a>
+            <a href="#">TAX TOOLS</a>
+            <a href="#">SMART INVOICE</a>
+            <a href="#">TAXPAYER RELATIONS</a>
+        </div>
+    </div>
+</div>
+
+<!-- Original calculator container -->
+<div class="main-container">
+    <div class="calculator">
+        <div class="jumbotron jumbotron-fluid">
+            <div>
+                <h2>Paye Calculator</h2>
+            </div>
+        </div>
+        
+        <!-- Main calculator content -->
+        <form action="" class="paye_form">
+            <div class="form-group row">
+                <label for="basic_salary" class="col-sm-2 col-form-label">Basic Pay</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="basic_salary" placeholder="Enter Salary"
+                           onkeydown="focusNext(event)" ondrop="return false;" onpaste="return false;"
+                           onkeypress='return event.charCode>= 46 && event.charCode<=57'><span id="errorname"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="house_allowance" class="col-sm-2 col-form-label">Allowances</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="house_allowance" placeholder="Enter allowances"
+                           onkeydown="focusNext(event)" ondrop="return false;" onpaste="return false;"
+                           onkeypress='return event.charCode>= 46 && event.charCode<=57'>
+                </div>
+            </div>
+
+            <div class="tot_earning">
+                <div class="computed_group">
+                    <div class="calculator_text">
+                        Gross/Taxable Pay
+                    </div>
+                    <div class="computed_values" id="gross_pay_text" onkeydown="focusNext(event)">
+                        <span>K</span>
+                        <div id="gross_pay">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="statutory_contribution" class="col-sm-2 col-form-label">Statutory Contribution</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="number" id="statutory_contribution" placeholder="Enter contribution"
+                           onkeydown="focusNext(event)" ondrop="return false;" onpaste="return false;"
+                           onkeypress='return event.charCode>= 46 && event.charCode<=57'>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <div class="computed_group">
+                <div class="calculator_text">Napsa 5%</div>
+                <div class="computed_values">
+                    <span>K </span>
+                    <div id="napsa">0</div>
+                </div>
+            </div>
+            
+            <div class="computed_group">
+                <div class="calculator_text">National Health Insurance</div>
+                <div class="computed_values">
+                    <span>K</span>
+                    <div id="insurance">0</div>
+                </div>
+            </div>
+            
+            <!-- Totals -->
+            <div class="totals">
+                <div class="computed_group">
+                    <div class="calculator_text">Total Contributions</div>
+                    <div class="computed_values">
+                        <span>K</span>
+                        <div id="total_contributions">0</div>
+                    </div>
+                </div>
+                
+                <div class="computed_group">
+                    <div class="calculator_text">Total Tax Deductions</div>
+                    <div class="computed_values">
+                        <span>K</span>
+                        <div id="total_tax_deductions">0</div>
+                    </div>
+                </div>
+                
+                <div class="computed_group">
+                    <div class="calculator_text">Total Deductions</div>
+                    <div class="computed_values">
+                        <span>K</span>
+                        <div id="total_deductions">0</div>
+                    </div>
+                </div>
+                
+                <div class="computed_group salary">
+                    <div class="calculator_text">Net Salary</div>
+                    <div class="computed_values">
+                        <span>K</span>
+                        <div id="net_salary">0</div>
+                    </div>
+                </div>
+
+                <div class="tax_band">
+                    <div class="table_text" align=center>PAYE TAX COMPUTATION BANDS <span id="current_year">2023</span></div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td scope="col">Tax Bands</td>
+                                <td scope="col">Chargeable Income</td>
+                                <td scope="col">Tax Rate</td>
+                                <td scope="col">Tax Due</td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>First K5,100.00 @</td>
+                                <td><div id="band1">0</div></td>
+                                <td>0%</td>
+                                <td><div id="first_band">0</div></td>
+                            </tr>
+
+                            <tr>
+                                <td>Next K5,100.01 - K7,100.00</td>
+                                <td><div id="band2">0</div></td>
+                                <td>20%</td>
+                                <td><div id="second_band">0</div></td>
+                            </tr>
+
+                            <tr>
+                                <td>Next K7,100.01 - K9,200.00</td>
+                                <td><div id="band3">0</div></td>
+                                <td>30%</td>
+                                <td><div id="third_band">0</div></td>
+                            </tr>
+
+                            <tr>
+                                <td>K9,200.01 and Above</td>
+                                <td><div id="band4">0</div></td>
+                                <td>37%</td>
+                                <td><div id="fourth_band">0</div></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table_text">Note: Gross pay shows the tax band category used to calculate your tax</div>
+                </div>
+
+                <div id="button_container" style="text-align: center;">
+                    <button type="button" class="btn btn-primary" onclick="window.location.reload(true);">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ZRA FOOTER -->
+<div class="zra-footer">
+    <div class="footer-container">
+        <!-- CONTACT US Section -->
+        <div class="footer-section">
+            <h3>CONTACT US</h3>
+            <p><i class="fa fa-map-marker"></i> Plot No 1704 Kalambo Road / Villa Elizabetha, Lusaka</p>
+            <p><i class="fa fa-phone"></i> 4111</p>
+            <p><i class="fa fa-envelope"></i> advice@zra.org.zm</p>
+        </div>
+        
+        <!-- OTHER LINKS Section -->
+        <div class="footer-section">
+            <h3>OTHER LINKS</h3>
+            <ul class="footer-links">
+                <li><a href="#">Buy Insurance</a></li>
+                <li><a href="#">National Pension Scheme Authority</a></li>
+                <li><a href="#">Bank of Zambia (BOZ)</a></li>
+                <li><a href="#">Patent and Company Registration Agency</a></li>
+                <li><a href="#">Ministry of Finance</a></li>
+                <li><a href="#">Ministry of Commerce Trade and Industry</a></li>
+                <li><a href="#">Zambia Trade Portal</a></li>
+                <li><a href="#">Zambia Development Agency</a></li>
+                <li><a href="#">Common Market for Eastern and Southern Africa</a></li>
+                <li><a href="#">World Customs Organisation</a></li>
+                <li><a href="#">World Trade Organisation</a></li>
+                <li><a href="#">Southern African Development Community</a></li>
+                <li><a href="#">Organisation for Economic Co-operation and Development</a></li>
+            </ul>
+        </div>
+        
+        <!-- SOCIAL MEDIA Section -->
+        <div class="footer-section">
+            <h3>SOCIAL MEDIA</h3>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Copyright Section -->
+    <div class="footer-copyright">
+        <p>© 2026 Zambia Revenue Authority. All rights reserved</p>
+    </div>
+</div>
+
+<!-- External JavaScript -->
+<script src="app.js"></script>
+<script>
+    // Toggle main menu for mobile
+    function toggleMainMenu() {
+        var x = document.getElementById("topMenu");
+        if (x.className === "top-menu") {
+            x.className += " responsive";
+        } else {
+            x.className = "top-menu";
+        }
+    }
+
+    // Toggle second navigation for mobile
+    function toggleSecondNav() {
+        var x = document.getElementById("secondNavLinks");
+        if (x.style.display === "flex") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "flex";
+        }
+    }
+
+    // Handle window resize
+    function handleResize() {
+        var width = window.innerWidth;
+        var secondNavLinks = document.getElementById("secondNavLinks");
+        var topMenu = document.getElementById("topMenu");
+        
+        if (width > 768) {
+            if (secondNavLinks) secondNavLinks.style.display = "flex";
+            if (topMenu) topMenu.classList.remove("responsive");
+        } else {
+            if (secondNavLinks) secondNavLinks.style.display = "none";
+        }
+    }
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize);
+</script>
+</body>
+</html>

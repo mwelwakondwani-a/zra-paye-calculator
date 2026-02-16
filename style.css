@@ -1,0 +1,488 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url("https://www.zra.org.zm/paye-calculator/scientific-calculator.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER STYLING */
+.top-header {
+    background: linear-gradient(to right, #0c4a83, #1768b3);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h2 {
+    margin: 0;
+    font-weight: 600;
+    color: white;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.logo p {
+    margin: 2px 0 0;
+    font-size: clamp(10px, 1.5vw, 12px);
+    color: white;
+}
+
+.top-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.top-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: clamp(12px, 1.5vw, 14px);
+}
+
+.top-menu a:hover {
+    text-decoration: underline;
+}
+
+.top-menu .icon {
+    display: none;
+    font-size: 24px;
+    margin-left: auto;
+    color: white;
+}
+
+/* SECOND NAV - UPDATED FOR MOBILE MENU */
+.second-nav {
+    background-color: #b69c6d;
+    padding: 0;
+}
+
+.nav-container {
+    padding: 0 5%;
+    width: 100%;
+}
+
+.nav-icon {
+    display: none;
+    color: white;
+    text-decoration: none;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon i {
+    font-size: 18px;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    padding: 12px 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(11px, 1.3vw, 13px);
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN CONTAINER - RESPONSIVE */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 15px 30px 15px;
+    flex: 1;
+}
+
+.calculator {
+    max-width: 600px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .25);
+    border-radius: 8px;
+}
+
+/* FORM RESPONSIVE */
+.form-group.row {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.col-sm-2, .col-sm-10 {
+    padding: 0 5px;
+}
+
+.input_group {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+input, .form-control {
+    height: 38px;
+    padding-left: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.calculator_text {
+    color: #323232;
+    font-size: clamp(13px, 2vw, 14px);
+}
+
+.table_text {
+    color: #323232;
+    font-weight: 600;
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+.computed_group {
+    display: flex;
+    margin-bottom: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.totals {
+    border-top: 1px solid lightgray;
+    padding-top: 15px;
+    font-weight: 600;
+}
+
+.salary {
+    background-color: #eee;
+    padding: 15px;
+    font-size: clamp(16px, 3vw, 18px);
+    border-radius: 5px;
+}
+
+.tax_band {
+    border-bottom: 1px solid lightgray;
+    padding: 7px 0;
+    font-size: clamp(11px, 1.8vw, 12px);
+}
+
+.computed_values {
+    color: #323232;
+    display: flex;
+    align-items: center;
+}
+
+.computed_values span {
+    padding-right: 5px;
+}
+
+/* TABLE RESPONSIVE */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 10px 0;
+}
+
+.table {
+    width: 100%;
+    min-width: 500px;
+    margin-top: 10px;
+}
+
+.table td {
+    padding: 8px 5px;
+    border: 1px solid #323232;
+    font-size: clamp(11px, 1.8vw, 13px);
+}
+
+/* BUTTON */
+.btn-primary {
+    margin-top: 20px;
+    background-color: #1768b3;
+    border: none;
+    padding: 10px 30px;
+    font-size: clamp(14px, 2vw, 15px);
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #0c4a83;
+}
+
+.jumbotron {
+    padding: 15px !important;
+    background: #f0f4f8;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.jumbotron h2 {
+    color: #0c4a83;
+    font-weight: 600;
+    margin: 0;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+}
+
+/* FOOTER RESPONSIVE */
+.zra-footer {
+    background: linear-gradient(to right, #0c4a83, #1768b3);
+    color: white;
+    padding: 40px 5% 20px;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1 1 250px;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    font-size: clamp(14px, 2vw, 16px);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #b69c6d;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    font-size: clamp(12px, 1.8vw, 13px);
+    line-height: 1.6;
+    color: #f0f0f0;
+    word-break: break-word;
+}
+
+.footer-section p i {
+    margin-right: 10px;
+    color: #b69c6d;
+    width: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: clamp(12px, 1.8vw, 13px);
+    transition: color 0.3s ease;
+    display: inline-block;
+    word-break: break-word;
+}
+
+.footer-links a:hover {
+    color: #b69c6d;
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #b69c6d;
+    transform: translateY(-3px);
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-copyright p {
+    font-size: clamp(11px, 1.5vw, 12px);
+    color: #f0f0f0;
+    margin: 0;
+}
+
+/* MOBILE RESPONSIVE BREAKPOINTS */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        position: relative;
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .top-menu {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        display: flex;
+    }
+    
+    .top-menu a {
+        margin: 5px 8px;
+    }
+    
+    .top-menu a:not(:last-child) {
+        display: none;
+    }
+    
+    .top-menu.responsive {
+        position: relative;
+    }
+    
+    .top-menu.responsive a {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+        text-align: center;
+    }
+    
+    .top-menu .icon {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: -45px;
+    }
+    
+    /* Second nav mobile styles */
+    .nav-icon {
+        display: flex;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 0 12px 0;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .calculator {
+        padding: 15px;
+        margin: 10px auto;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+    .calculator {
+        min-width: auto;
+        padding: 12px;
+    }
+    
+    .computed_group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .computed_values {
+        align-self: flex-end;
+    }
+    
+    .salary {
+        padding: 10px;
+    }
+    
+    .top-menu .icon {
+        top: -40px;
+    }
+}
+
+/* LANDSCAPE MODE */
+@media (max-height: 600px) and (orientation: landscape) {
+    .calculator {
+        margin: 10px auto;
+    }
+    
+    .zra-footer {
+        padding: 20px 5%;
+    }
+}
